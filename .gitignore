@@ -1,0 +1,26 @@
+# This repository publishes ONE thing: the built, self-contained dashboard,
+# served by GitHub Pages. Everything else in this folder stays out of version
+# control -- the source workbook (its Validation_Log holds internal QA notes),
+# the Power BI project, the brand guidelines PDF, and the saved copy of the
+# irena.org page.
+#
+# So: exclude everything, then re-admit only what is published. Git will not
+# descend into an excluded directory, which is why each directory on the path
+# is un-ignored before its contents are re-ignored.
+
+/*
+
+!/.gitignore
+!/README.md
+!/index.html
+
+!/webdash/
+/webdash/*
+!/webdash/dist/
+/webdash/dist/*
+!/webdash/dist/national-energy-planning-dashboard.html
+
+# Power BI local artefacts, kept from the previous .gitignore. Redundant under
+# the rules above, but harmless and correct if the scope ever widens.
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

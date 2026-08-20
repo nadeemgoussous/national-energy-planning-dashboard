@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRENA National Energy Transition Planning Dashboard</title>
+<link rel="canonical" href="webdash/dist/national-energy-planning-dashboard.html">
+<!--
+  GitHub Pages serves this repository from its root, so this stub exists only to
+  give the dashboard a short URL. The dashboard's whole filter state lives in the
+  URL hash, so the hash is forwarded rather than dropped; the meta refresh is the
+  fallback for readers with JavaScript disabled.
+-->
+<meta http-equiv="refresh" content="0; url=webdash/dist/national-energy-planning-dashboard.html">
+<style>
+  body { font: 16px/1.6 system-ui, sans-serif; margin: 4rem auto; max-width: 34rem;
+         padding: 0 1.5rem; color: #012a3d; }
+  a { color: #0073ab; }
+</style>
+</head>
+<body>
+<p>Opening the <a id="go" href="webdash/dist/national-energy-planning-dashboard.html">National
+Energy Transition Planning Dashboard</a>&hellip;</p>
+<script>
+(function () {
+  var target = "webdash/dist/national-energy-planning-dashboard.html" + location.hash;
+  document.getElementById("go").href = target;
+  location.replace(target);
+}());
+</script>
+</body>
+</html>
