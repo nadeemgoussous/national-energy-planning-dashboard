@@ -1,0 +1,150 @@
+﻿Tool_Canonical,Category,Description,Link
+(B)EST,,,
+2050 pathways explorer,Simulation,"This web-based tool enables the development of country energy transition scenarios based on realistic and transparent assumptions. Simulations can be performed in real time offering a direct understanding of the key levers of the low carbon transition. The exploration scope encompasses the energy system and its dynamics, all GHG emissions, and the associated resources and socio-economic impacts.",https://pathwaysexplorer.climact.com/pathways?visualisation=0&region=AT&source=model&scenario=REF+%28Not+country+specific%29
+AIM,CGE / Simulation,Asia-Pacific Integrated Model family (NIES). AIM/CGE variants merged here; AIM/EndUse and AIM-ExSS kept separate as distinct model types.,https://www.iamconsortium.org/resources/model-resources/aim-hub/
+AIM-ExSS,Simulation - snapshot,AIM Extended Snapshot Tool - distinct model type from AIM/CGE.,https://www.iamconsortium.org/resources/model-resources/aim-hub/
+AIM/EndUse,Optimisation - bottom-up end use,AIM bottom-up end-use technology model - distinct model type from AIM/CGE.,https://www.iamconsortium.org/resources/model-resources/aim-hub/
+ALADIN/CLIMATE-CZ,,,
+AMEBA,,,
+ANTARES,Power-system / Simulation,"Sequential Monte-Carlo power-system adequacy and market simulator (RTE, open-source).",https://antares-simulator.org
+ARClim,,Atlas de Riesgos Climáticos para Chile: web atlas of climate-risk maps - NOT a numerical model.,https://arclim.mma.gob.cl
+Balmorel,"Supply, Partial Equilibrium, Top-Down",Balmorel is a partial equilibrium model for analysing the electricity and combined heat and power sectors in an international perspective.,http://www.balmorel.com/
+BioHEAT,,Bioenergy heat/CHP assessment tool; developer unconfirmed.,
+CAPRA,Other - disaster risk,Probabilistic natural-hazard and disaster risk assessment platform (World Bank/ERN) - NOT an energy model.,https://ecapra.org
+CAPRI,Other - agricultural partial equilibrium,Common Agricultural Policy Regionalised Impact model: global agricultural partial-equilibrium model (Uni Bonn).,https://www.capri-model.org
+CASMOFOR,Accounting - forest carbon,"Carbon Sequestration Model for Forestations: afforestation carbon-cycle accounting (forestry, not energy).",https://www.scientia.hu/casmofor
+CEGIM,,,
+CETPA,,,
+CGDD,,,
+CGE,,"Computable General Equilibrium - a class of economic models, not a specific tool.",
+CLIM'AGRI,,,
+CMIP,,,
+CO2,,"Carbon dioxide - an emissions indicator, not a modelling tool.",
+COSMO,Climate,Consortium for Small-scale Modelling: numerical weather-prediction model core.,http://www.cosmo-model.org
+CPS model Slovakia,,,
+Climate pathways calculator for Austria,,,
+Cosmo-CLM,Climate,COSMO model in Climate Mode (CCLM): regional climate model derived from the COSMO core.,https://www.clm-community.eu
+DAP,,Ambiguous acronym; not identifiable as a modelling tool.,
+DASMOD,,,
+DCarb2,,,
+DDPP,,,
+DEM,Other - generic label,"Generic 'demand / energy demand model' label, not one branded tool. Distinct from Ademe and SADEM.",
+DENIO,,Danish environmentally-extended input-output model; identity and developer not firmly confirmed.,
+DigSILENT Power Factory,Power-system / Simulation,DIgSILENT PowerFactory: power-system analysis software (DIgSILENT GmbH). All spelling variants merged here.,https://www.digsilent.de
+Dynamic Dispatch Model,,,
+E3,,,
+E3MC,Macro-econometric,"Energy, Emissions and Economy Model for Canada (ECCC): Energy 2020 plus a macro model.",https://www.canada.ca
+E3ME,Macro-econometric,"Energy-Environment-Economy Macro-econometric model, global (Cambridge Econometrics).",https://www.e3me.com
+EC-IAM,,,
+EC-MSMR,,,
+EC-Pro,CGE,Canadian energy-economy CGE (Navius Research).,https://www.naviusresearch.com
+ECREEE Scenario Tool,,,
+EFOM-ENV,,,
+EGEAS,Power-system / Optimisation,Electric Generation Expansion Analysis System: production costing and least-cost generation expansion (EPRI).,https://www.epri.com
+EMEC,CGE,"Environmental Medium-term Economic Model: recursive-dynamic CGE of Sweden, soft-linked to TIMES-Sweden (NIER).",https://www.konj.se
+ENUSEM,,,
+ENVISAGE,CGE,Environmental Impact and Sustainability Applied General Equilibrium: global recursive-dynamic CGE (World Bank).,https://www.worldbank.org
+ERI-EDO,,,
+ESDP 2030,,,
+EX-ACT,,,
+EnerMED,"Simulation, Demand","EnerMED is a bottom-up demand forecasting model enabling users to assess the impact of energy efficiency policies at country-level, and to drill-down to branches and end-uses.","https://www.enerdata.net/solutions/enermed-model.html#:~:text=EnerMED%20is%20a%20bottom-up%20demand%20forecasting%20model%20enabling,it%20with%20your%20database%20or%20with%20other%20ones."
+Energy Demand Model,Other - generic label,Generic descriptive label used in the source data rather than a named tool.,
+Euro-Cordex,,,
+FIT,,,
+FORECAST,Simulation - bottom-up demand,FORecasting Energy Consumption Analysis and Simulation Tool: bottom-up demand and emissions projection (Fraunhofer ISI / IREES).,https://www.forecast-model.eu
+FREM,,,
+Finage,,,
+GAP,,Ambiguous acronym; not identifiable as a modelling tool.,
+GCAM,Climate / integrated assessment,Global Change Analysis Model: global dynamic-recursive integrated assessment model (PNNL/JGCRI). GCAM-RDM merged here (RDM is a method wrapper).,https://jgcri.github.io/gcam-doc
+GCAM-KAIST,Integrated assessment,Korea-focused structural extension of GCAM (KAIST) - kept separate as a genuine fork.,https://www.iamcdocumentation.eu
+GEM,Other - ambiguous label,Ambiguous generic label in the source data - NOT the same tool as GEM-E3. Confirm intended model with the data owner.,
+GEM-E3,CGE,General Equilibrium Model for Economy-Energy-Environment: global recursive-dynamic CGE (NTUA-ICCS / EC JRC).,https://joint-research-centre.ec.europa.eu/gem-e3_en
+GEOSIM,,,
+GTAP-GDyn-E,CGE,Dynamic GTAP with Energy-Environment: recursive-dynamic global CGE (Purdue/GTAP).,https://www.gtap.agecon.purdue.edu
+Green Economy Model,,,
+GreenMod,,,
+GreenREFORM,CGE,Danish environmental CGE model (DREAM). Merges the source spellings 'Green REFORM' and 'GrønREFORM'.,https://dreamgroup.dk
+HOMER,Optimisation - micro-grid,"Hybrid Optimization Model for Multiple Energy Resources: micro-grid sizing and dispatch optimisation (UL Solutions, orig. NREL).",https://www.homerenergy.com
+I3E,,,
+ICES,CGE,Intertemporal Computable Equilibrium System: recursive-dynamic multiregional CGE (CMCC).,https://www.icesmodel.org
+IEM,,,
+IPCC Waste Model,,,
+Imaclim,CGE - hybrid,IMACLIM-R / IMACLIM-P: hybrid recursive-dynamic CGE coupling macro with bottom-up energy detail (CIRED).,https://www.centre-cired.fr
+In-house,,,
+IntERACT,CGE + energy-system link,Integrated Economy And Climate Tool: linked CGE plus bottom-up energy model of Denmark (Danish Energy Agency).,https://ens.dk
+Invert/EE,Simulation - buildings,Invert/EE-Lab: bottom-up building renovation and technology-diffusion model (TU Wien EEG).,https://www.invert.at
+LEAP,Accounting / Simulation,"Low Emissions Analysis Platform: integrated energy-scenario and GHG accounting platform (SEI). Country instances (Albania-LEAP, LEAP-NGA, LEAP-RO, Janus, ERI-LEAP) are merged here.",https://leap.sei.org
+LIPS,,,
+LISFLOOD,,,
+LaWiEnMod,,,
+Logos,,,
+M3E,,,
+MACC,Accounting / method,"Marginal Abatement Cost Curve - a generic method, not a branded tool.",
+MAED,"Demand, Simulation","Model for Analysis of Energy Demand (MAED) evaluates future energy demands based on medium- to long-term scenarios of socioeconomic, technological and demographic development.",https://www.iaea.org/publications/7430/model-for-analysis-of-energy-demand-maed-2
+MANAGE,CGE,"Mitigation, Adaptation and New Technologies Applied General Equilibrium: single-country recursive-dynamic CGE (World Bank, open source).",https://github.com/worldbank/MANAGE
+MARKAL,Optimisation - bottom-up,MARKet ALlocation: predecessor bottom-up energy-system optimisation framework (IEA-ETSAP). MARKAL-Latvia/-Macedonia merged here.,https://iea-etsap.org
+MCG,,,
+MDI,,Ambiguous acronym; not identifiable as a modelling tool.,
+MEC-H2,,,
+MEDPRO,,,
+MEG4C,,,
+MENFIS,,,
+MESSAGE,"Supply, Optimization",MESSAGE (Model for Energy Supply Strategy Alternatives and their General Environmental Impact) has been developed by the International Institute for Applied Systems Analysis (IIASA) in Austria since the 1980s,https://www.iaea.org/publications/10861/modelling-nuclear-energy-systems-with-message-a-users-guide
+MIO-ES,,,
+MODEV,,,
+MSR,,"Market Stability Reserve - an EU ETS policy mechanism, not a modelling tool.",
+Malta LCDS MACC model,Accounting / method,National MACC instance built for Malta's Low Carbon Development Strategy.,
+NAP,,"National Adaptation Plan - a policy instrument, not a modelling tool.",
+NEMESIS,Macro-econometric - sectoral,New Econometric Model of Evaluation by Sectoral Interdependency and Supply: EU sectoral macro-econometric model (SEURECO/ERASME).,https://www.erasme-team.eu
+NEMO,Power-system / Optimisation,National Electricity Market Optimiser: Australian NEM optimisation model - unrelated to NEMS.,https://nemo.ozlabs.org
+NEMS,Simulation / partial equilibrium,National Energy Modeling System: US energy-economy modelling system behind the Annual Energy Outlook (US EIA).,https://www.eia.gov/outlooks/aeo/nems/documentation/
+NERC Excel,,,
+NEWAVE,,,
+National Emissions Foresight System,,,
+OP-NEMS,Simulation,Office of Policy NEMS: NEMS variant for US GHG pathway analysis (OnLocation Inc. for US DOE).,https://www.energy.gov/policy/office-policy-national-energy-modeling-system-op-nems
+ORDENA,,,
+OSeMOSYS,Optimization,"OSeMOSYS is an open source modelling system for long-run integrated assessment and energy planning. It has been employed to develop energy systems models from the scale of the globe, continents, countries, regions and villages. It can focuses on detailed power representations, or multi-resource (material, financial, all energy) systems.",http://www.osemosys.org/
+OptGen,Optimisation - expansion planning,Generation and transmission expansion-planning model (PSR Inc.). Merges 'OPGEN' and 'PSR Optgen'.,https://www.psr-inc.com/en/software/optgen
+PANTA RHEI model,,,
+PDPAT-II,,,
+PEIKKO,,,
+PLANDEPE,,,
+PLANEL,,,
+PLEXOS,Optimization,"Optimization model for long, medium and short-term energy market analysis.",https://github.com/EnergyExemplarNorthAmerica/Python-PLEXOS-API
+POTEnCIA,Simulation - hybrid partial equilibrium,Policy-Oriented Tool for Energy and Climate change Impact Assessment: EU energy-system model to 2050 (EC JRC).,https://joint-research-centre.ec.europa.eu
+PRIMES,Simulation - market equilibrium,EU energy-market equilibrium engineering-economic model (E3-Modelling / NTUA-ICCS). Compact-PRIMES merged here.,https://www.e3modelling.com
+PRM,,,
+PROSPECTS+,,Buildings/energy scenario tool; developer and official page not confirmed.,
+PROVIEW,,,
+PSSE,Simulation,Power System Simulator for Engineering (PSSE—or PSS/E) is a software tool used by power system engineers to simulate electrical power transmission networks in steady-state conditions,https://www.siemens.com/global/en/products/energy/grid-software/planning/pss-software/pss-e.html
+Power2Sim,,,
+PowerFlex,,,
+Price Path Model,,,
+Prometheus,Simulation - stochastic,PROMETHEUS: Monte-Carlo stochastic global energy-system model (E3-Modelling).,https://www.e3modelling.com
+PyPSA,Optimization,"PyPSA stands for ""Python for Power System Analysis"". PyPSA is an open source toolbox for simulating and optimising modern power and energy systems that include features such as conventional generators with unit commitment, variable wind and solar generation, storage units, coupling to other energy sectors, and mixed alternating and direct current networks.",https://github.com/PyPSA/pypsa
+REES-SLO,,,
+RETScreen,Optimization,"RETScreen is a Clean Energy Management Software system for energy efficiency, renewable energy and renewable energy project feasibility analysis and even ongoing energy performance analysis.",https://natural-resources.canada.ca/maps-tools-and-publications/tools/modelling-tools/retscreen/7465
+Ramses,Power-system / Simulation,RAMSES: hourly merit-order techno-economic electricity and district-heat model (Danish Energy Agency).,https://ens.dk
+Reference Electrification Model,,,
+SADEM,,Named demand model instance; developer and official page unconfirmed.,
+SAM,Optimization,The System Advisor Model (SAM) is a free techno-economic software model that facilitates decision-making for people in the renewable energy industry,https://sam.nrel.gov/
+SAMM,,,
+SDDP,Optimization,"SDDP is a stochastic dispatch model for electrical systems representing the transmission, gas, and hydrogen networks used in long, medium, and short-term operation studies.",https://www.psr-inc.com/en/software/?tabId=sddp&subPanelId=sub-panel-sddp-1
+SEI,,,
+SEMS,,Could not be authoritatively identified; not confirmed as a NEMS variant. Needs owner input.,
+SPLAT,Interface,System Planning Test (SPLAT) capacity expansion models are a key component and product of IRENA’s support to African countries.,https://www.irena.org/Energy-Transition/Planning/SPLAT-Models-for-Africa
+STATEC NEAM,Simulation - bottom-up projection,"National Energy and Air-emissions Model run by STATEC Luxembourg (STATEC = institution, NEAM = model).",https://statistiques.public.lu
+Samnett,,,
+Simple E,Macro-econometric - Excel,Simple Econometric Simulation System: Excel-based econometric energy-economy simulation.,
+TEMPS,,,
+TIMES,Optimisation - bottom-up,The Integrated MARKAL-EFOM System: bottom-up least-cost energy-system optimisation model generator (IEA-ETSAP). National instances merged here; UK-TIMES kept separate as a fork.,https://iea-etsap.org
+TIMES and Emission tool,Optimisation - bottom-up (combination),A soft-linked TIMES + emissions tool combination rather than TIMES itself - flagged for review before merging into TIMES.,
+TM5-FASST,,,
+TSL,Optimization,The Time Series Lab (TSL) is a renewable modeling tool that produces future synthetic scenarios of intermittent Variable Renewable Energy (VRE) sources. TSL has two main modules: The TSL-Data and The TSL-Scenarios.,https://www.psr-inc.com/wp-content/uploads/softwares/TSLFolderEng.pdf
+TheMA,,,
+ThreeME,CGE / Macro - neo-Keynesian,Multi-sector Macroeconomic Model for the Evaluation of Environmental and Energy policy (ADEME + OFCE + TNO).,https://www.threeme.org
+UK-TIMES,Optimisation - bottom-up,UK TIMES / UKTM: substantially re-engineered elastic-demand fork of TIMES - kept separate from the TIMES parent.,https://iea-etsap.org
+VEDA,Interface,"Interface to work with TIMES model. VEDA2.0 is a powerful yet user friendly set of tools geared to facilitate the creation, maintenance, browsing, and modification of the large data bases required by complex mathematical and economic models.",https://iea-etsap.org/index.php/etsap-tools/data-handling-shells/veda
+WASP,Power-system / Optimisation,Wien Automatic System Planning Package: least-cost generation expansion planning (IAEA). WASP-IV and ASPLAN merged here.,https://www.iaea.org
+py-GAS-EM,,,
+sMTSIM,,,

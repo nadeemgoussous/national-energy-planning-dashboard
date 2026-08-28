@@ -11,19 +11,23 @@ Catalogue built 2026-08-13: **269 documents** across **142 countries**, citing
 
 ## What this repository is
 
-A hosting stub, nothing more. It carries one file —
-`webdash/dist/national-energy-planning-dashboard.html` — so that the dashboard can be
-opened and reviewed in a browser without downloading anything. `index.html` only
-redirects to it, forwarding the URL hash so deep links keep working.
+A hosting stub, nothing more. It carries the dashboard —
+`webdash/dist/national-energy-planning-dashboard.html` — and the three CSV files it
+reads, so that it can be opened and reviewed in a browser without downloading
+anything. `index.html` only redirects to it, forwarding the URL hash so deep links
+keep working.
 
-That file is **generated**, and the things that generate it are not in this
+Those files are **generated**, and the things that generate them are not in this
 repository: the build script, the page source, and the Excel workbook the data comes
 from all live in IRENA's internal project folder. Editing the HTML here would be
 overwritten on the next build.
 
-The page is entirely self-contained — data, world geometry, styles and scripts are
-all inlined. It makes no network requests, so it works equally well from a file
-share, a USB stick, or offline.
+The page reads its catalogue from `Documents.csv`, `Doc_Tools.csv` and `MT_Key.csv`
+in its own folder, which is how the data can be refreshed without rebuilding the
+page. It also carries a full copy of that data inlined as a fallback, along with the
+world geometry, styles and scripts — so opened from a file share, a USB stick or
+offline, where those files cannot be read, it still works and says so in its footer.
+It makes no requests to any other origin.
 
 ## Status
 

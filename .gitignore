@@ -1,4 +1,4 @@
-# This repository publishes ONE thing: the built, self-contained dashboard,
+# This repository publishes the built dashboard and the three CSVs it reads,
 # served by GitHub Pages. Everything else in this folder stays out of version
 # control -- the source workbook (its Validation_Log holds internal QA notes),
 # the Power BI project, the brand guidelines PDF, and the saved copy of the
@@ -7,6 +7,12 @@
 # So: exclude everything, then re-admit only what is published. Git will not
 # descend into an excluded directory, which is why each directory on the path
 # is un-ignored before its contents are re-ignored.
+#
+# The CSVs are published because the dashboard fetches them from its own folder;
+# without them the preview would render its "no data files were found" notice and
+# look broken. They disclose nothing new -- the same data is already inlined in
+# the published HTML as the offline fallback. NOT published: data.json,
+# artifact-body.html, EMBED-INSTRUCTIONS.md, width-test.html and all of src/.
 
 /*
 
@@ -19,6 +25,9 @@
 !/webdash/dist/
 /webdash/dist/*
 !/webdash/dist/national-energy-planning-dashboard.html
+!/webdash/dist/Documents.csv
+!/webdash/dist/Doc_Tools.csv
+!/webdash/dist/MT_Key.csv
 
 # Power BI local artefacts, kept from the previous .gitignore. Redundant under
 # the rules above, but harmless and correct if the scope ever widens.
