@@ -294,6 +294,10 @@ button{font:inherit;color:inherit}
 .map-note{margin-top:11px;padding-top:10px;border-top:1px solid var(--line);
   font-size:11.5px;color:var(--ink-3);line-height:1.5;max-width:96ch}
 .map-hint{display:none;color:var(--ink-2)}
+/* Only offered on a phone, where the map has to choose between fitting and being
+   big enough to tap. Above 700px the column is wide enough for both. */
+.map-zoom{display:none}
+.map-zoom[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
 /* Required on any map an intergovernmental organisation publishes. Deliberately
    quiet but not hidden — it has to be legible without competing with the data. */
 .map-disclaimer{margin-top:8px;font-size:10.5px;color:var(--ink-3);opacity:.85;
@@ -442,9 +446,21 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
   /* A world choropleth scaled to a 350px column is ~155px tall — too small to
      read or to hit a country in. Hold it at a legible width and let the card
      pan horizontally instead, the same affordance the tables already use. */
+  /* The 620px floor below was protecting legibility — a world choropleth scaled
+     to a 320px column is ~142px tall, too small to hit a country in. But holding
+     it at 620px inside a 322px card means the card opens showing the Americas
+     and nothing else: 60% of the world, including every region with the densest
+     data, is off-screen behind a sideways swipe most readers will never make.
+     A small map of the whole world answers "where are there plans" — which is
+     what this card is for on a phone — and a map of one continent does not.
+     So: fit by default, and keep the wide pannable version one tap away rather
+     than reversing the legibility decision. In wide mode the pan starts centred,
+     not hard left, so it never opens on the Americas either. */
   .map-wrap{overflow-x:auto;overscroll-behavior-x:contain}
-  #map{min-width:620px}
-  .map-hint{display:inline}
+  #map{min-width:0}
+  .map-wrap.wide #map{min-width:620px}
+  .map-zoom{display:inline-flex;margin-top:9px}
+  .map-wrap.wide ~ .map-note .map-hint{display:inline}
   /* Scroll trap, fixed. At 720px the table is taller than a phone screen, so it
      becomes a full-screen scroll container — and `overscroll-behavior: contain`
      then forbids chaining out of it, so a swipe that reaches the end of 24,000px
@@ -614,10 +630,11 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
               <div class="map-legend" id="mapLegend"></div>
             </div>
           </header>
-          <div class="map-wrap">
+          <div class="map-wrap" id="mapWrap">
             <svg id="map" role="img"></svg>
             <div class="map-empty" id="mapEmpty" hidden>No countries match the current filters.</div>
           </div>
+          <button type="button" class="map-zoom ghost-btn ghost-btn-plain" id="mapZoom" aria-pressed="false">Enlarge map</button>
           <p class="map-note">Countries in grey have no document in this catalogue. That may mean no long&#8209;term plan exists, or that one exists and has not been catalogued here. <span class="map-hint">Swipe the map sideways to reach the rest of the world.</span></p>
           <p class="map-disclaimer">The designations employed and the presentation of materials herein do not imply the expression of any opinion on the part of IRENA concerning the legal status of any region, country, territory, city or area or of its authorities, or concerning the delimitation of frontiers or boundaries.</p>
           <p class="sr-only">The same figures are available country by country, as a sortable table, on the Explorer tab.</p>
@@ -1240,15 +1257,55 @@ const typeColor = (t, thin) => (t === "LT-LEDS" ? css(thin ? "--s2-thin" : "--s2
 
 /* ---------------------------------------------------------------- tooltip */
 const tip = $("#tip");
+
+/* Which slice of this page the reader can actually see, in frame coordinates.
+ *
+ * innerHeight cannot answer this in the embed — it is the *content* height, so
+ * the "would the tooltip fall off the bottom" test below never fires and a
+ * tooltip opened near the bottom of the reader's screen renders past it, unseen.
+ * Same trap as position:fixed, position:sticky, vh and
+ * documentElement.scrollHeight: the frame cannot see where the host has
+ * scrolled to.
+ *
+ * It can, though, when it is same-origin with the host — which the IRENA embed
+ * is, since the iframe src is a path on the same site. window.frameElement is
+ * then the iframe element in the host document, and its rect gives exactly where
+ * this frame sits in the host's viewport. Read at hover time, so it is never
+ * stale, and cheap enough to do per tooltip.
+ *
+ * Cross-origin, frameElement is null or throws and this returns null, which puts
+ * the tooltip back on innerHeight — today's behaviour, no worse. Standalone,
+ * parent === window and innerHeight is genuinely right, so it is skipped.
+ *
+ * (IntersectionObserver looks like the cross-origin answer and is not: observing
+ * #app in a content-sized frame, Chrome accepts observe() and then never
+ * delivers a callback, not even the initial one. Measured, not assumed.) */
+function visibleBand() {
+  if (parent === window) return null;
+  try {
+    const fe = frameElement;
+    if (!fe) return null;
+    const r = fe.getBoundingClientRect();
+    const top = Math.max(0, -r.top);
+    const bottom = Math.min(innerHeight, parent.innerHeight - r.top);
+    return bottom - top > 40 ? { top, bottom } : null;
+  } catch (e) {
+    return null;                 // cross-origin host
+  }
+}
+
 function showTip(html, ev) {
   tip.innerHTML = html;
   tip.hidden = false;
   const r = tip.getBoundingClientRect();
+  const band = visibleBand();
+  const vTop = band ? band.top : 0;
+  const vBottom = band ? band.bottom : innerHeight;
   let x = ev.clientX + 14, y = ev.clientY + 14;
   if (x + r.width > innerWidth - 8) x = ev.clientX - r.width - 14;
-  if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - 14;
+  if (y + r.height > vBottom - 8) y = ev.clientY - r.height - 14;
   tip.style.left = Math.max(8, x) + "px";
-  tip.style.top = Math.max(8, y) + "px";
+  tip.style.top = Math.max(vTop + 8, y) + "px";
 }
 function hideTip() { tip.hidden = true; }
 function bindTip(node, html) {
@@ -1510,6 +1567,25 @@ function buildMap() {
   });
   MAP_BUILT = true;
 }
+
+/* Phone-only map size toggle. Fit-to-width is the default so the card never
+ * opens on one continent; this switches to the 620px pannable map for anyone who
+ * wants to tap a small country, and centres the pan rather than leaving it hard
+ * left. See the note in app.css under the 700px breakpoint. */
+(() => {
+  const btn = $("#mapZoom"), wrap = $("#mapWrap");
+  if (!btn || !wrap) return;
+  const centre = () => { wrap.scrollLeft = Math.max(0, (wrap.scrollWidth - wrap.clientWidth) / 2); };
+  btn.addEventListener("click", () => {
+    const wide = wrap.classList.toggle("wide");
+    btn.setAttribute("aria-pressed", wide ? "true" : "false");
+    btn.textContent = wide ? "Fit map to screen" : "Enlarge map";
+    // Read a layout property first: toggling the class alone leaves scrollWidth
+    // at its pre-reflow value, and centring against that is a no-op.
+    if (wide) { void wrap.offsetWidth; centre(); requestAnimationFrame(centre); }
+    else wrap.scrollLeft = 0;
+  });
+})();
 
 let mapHover = null;
 let countryStats = new Map();
