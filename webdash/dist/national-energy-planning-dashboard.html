@@ -186,7 +186,8 @@ button{font:inherit;color:inherit}
 .brush-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
 .brush-title{font-size:10.5px;font-weight:640;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
 .brush-range{font-size:11.5px;font-weight:620;color:var(--ink-1);font-variant-numeric:tabular-nums}
-.brush{flex:1;min-height:38px;cursor:crosshair;position:relative;touch-action:none;border-radius:4px}
+.brush{flex:1;min-height:46px;cursor:crosshair;position:relative;touch-action:none;border-radius:4px}
+.brush-tick{font-size:9.5px;fill:var(--ink-3);font-variant-numeric:tabular-nums}
 .brush:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .brush svg{display:block;width:100%;height:100%;overflow:visible}
 
@@ -325,6 +326,13 @@ g.row.active .ax-lab{fill:var(--ink-1);font-weight:620}
   paint-order:stroke;stroke:var(--surface-1);stroke-width:3px;stroke-linejoin:round}
 
 /* ============================================================ tables */
+/* The 66vh term only does something when the file is opened standalone. Inside
+   the auto-height iframe innerHeight IS the content height, so 66vh is always
+   larger than 720px and min() always picks 720px — on every device, phone
+   included. `vh` is the fourth member of the family that cannot work in an
+   auto-height frame, after position:fixed, position:sticky and
+   documentElement.scrollHeight. Do not reach for a viewport unit here to make
+   this adapt; it cannot. The phone case is handled explicitly below 700px. */
 .table-wrap{overflow:auto;max-height:min(66vh,720px);border:1px solid var(--line);
   border-radius:11px;overscroll-behavior:contain}
 table{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px}
@@ -424,8 +432,8 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
    brush leaves it stranded next to a two-row block — put it underneath instead. */
 @media (max-width:1150px){
   .filterbar{flex-direction:column;gap:10px}
-  .fb-brush{flex:none;border-left:0;border-top:1px solid var(--line);padding:9px 0 0;height:58px}
-  .brush{min-height:30px}
+  .fb-brush{flex:none;border-left:0;border-top:1px solid var(--line);padding:9px 0 0;height:66px}
+  .brush{min-height:38px}
 }
 @media (max-width:700px){
   .filterbar{position:static}
@@ -437,6 +445,19 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
   .map-wrap{overflow-x:auto;overscroll-behavior-x:contain}
   #map{min-width:620px}
   .map-hint{display:inline}
+  /* Scroll trap, fixed. At 720px the table is taller than a phone screen, so it
+     becomes a full-screen scroll container — and `overscroll-behavior: contain`
+     then forbids chaining out of it, so a swipe that reaches the end of 24,000px
+     of rows still will not move the page. The reader's finger is captured and
+     the only escape is the ~14px margin at the edge of the screen.
+     Two changes, either of which would fix it on its own:
+       - the box is now shorter than any phone viewport, so there is always page
+         above and below it to scroll with;
+       - vertical chaining is allowed again, so reaching the end of the table
+         hands the scroll back to the page the way a reader expects.
+     Horizontal stays contained: the document table is ~1080px wide in a 305px
+     window, and letting that chain would trigger the browser's back-swipe. */
+  .table-wrap{max-height:440px;overscroll-behavior:contain auto}
 }
 /* On a phone the three-way map switch is wider than the column it sits in. */
 @media (max-width:560px){
@@ -1281,25 +1302,62 @@ function renderBrush() {
   const max = Math.max(...base.values());
   const bw = w / years.length;
 
+  // Room under the bars for the year axis. Without it the histogram is not
+  // readable as a control at all: there is no way to tell which period any bar
+  // is, or what you are about to select, until you drag and watch the readout.
+  const padB = 13;
+  const plotH = Math.max(10, h - padB);
+
   const s = svg("svg", { viewBox: `0 0 ${w} ${h}`, preserveAspectRatio: "none" });
   years.forEach((y, i) => {
     const n = base.get(y) || 0;
     const inRange = y >= state.y0 && y <= state.y1;
-    const bh = n ? Math.max(1.5, (n / max) * (h - 3)) : 0;
+    const bh = n ? Math.max(1.5, (n / max) * (plotH - 3)) : 0;
     if (bh) {
       s.appendChild(svg("rect", {
-        x: (i * bw + 0.6).toFixed(2), y: (h - bh).toFixed(2),
+        x: (i * bw + 0.6).toFixed(2), y: (plotH - bh).toFixed(2),
         width: Math.max(1, bw - 1.2).toFixed(2), height: bh.toFixed(2), rx: 1.5,
         fill: inRange ? css("--accent") : css("--line-2"),
         opacity: inRange ? (sel.get(y) ? 1 : 0.45) : 0.6,
       }));
     }
   });
-  s.appendChild(svg("line", { x1: 0, y1: h - 0.5, x2: w, y2: h - 0.5, stroke: css("--line"), "stroke-width": 1 }));
+  s.appendChild(svg("line", { x1: 0, y1: plotH - 0.5, x2: w, y2: plotH - 0.5, stroke: css("--line"), "stroke-width": 1 }));
+
+  // First and last year are always labelled, pinned to the ends so they cannot
+  // fall off the edge. Interior ticks land on round years, at whatever step
+  // still leaves ~34px per label — the control is 232px on the desktop column
+  // and full width on a phone, so the step has to follow the width rather than
+  // be fixed. A tick is dropped if it would collide with either end label.
+  const ty = h - 3;
+  const endGap = 30;
+  s.appendChild(svg("text", { x: 0, y: ty, class: "brush-tick", "text-anchor": "start" }, Y_MIN));
+  s.appendChild(svg("text", { x: w, y: ty, class: "brush-tick", "text-anchor": "end" }, Y_MAX));
+  const room = Math.max(0, Math.floor(w / 34) - 2);
+  if (room > 0) {
+    const step = [5, 10, 20, 25, 50].find((k) => Math.floor((Y_MAX - Y_MIN) / k) <= room);
+    if (step) {
+      for (let y = Math.ceil(Y_MIN / step) * step; y < Y_MAX; y += step) {
+        const x = (y - Y_MIN + 0.5) * bw;
+        if (x < endGap || x > w - endGap) continue;
+        s.appendChild(svg("text", { x: x.toFixed(1), y: ty, class: "brush-tick", "text-anchor": "middle" }, y));
+      }
+    }
+  }
+
   brushEl.innerHTML = "";
   brushEl.appendChild(s);
   $("#brushRange").textContent = state.y0 === Y_MIN && state.y1 === Y_MAX ? "all years" : `${state.y0}–${state.y1}`;
-  brushEl.setAttribute("aria-valuetext", `${state.y0} to ${state.y1}`);
+  // role="slider" requires aria-valuenow; without it a screen reader announces
+  // the control and then nothing about where it is set. valuetext is what is
+  // actually read out, but it does not substitute for valuenow being present.
+  brushEl.setAttribute("aria-valuemin", Y_MIN);
+  brushEl.setAttribute("aria-valuemax", Y_MAX);
+  brushEl.setAttribute("aria-valuenow", state.y0);
+  brushEl.setAttribute("aria-valuetext",
+    state.y0 === Y_MIN && state.y1 === Y_MAX
+      ? `all years, ${Y_MIN} to ${Y_MAX}`
+      : `${state.y0} to ${state.y1}`);
 }
 
 function brushYear(ev) {
