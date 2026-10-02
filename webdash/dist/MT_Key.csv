@@ -103,7 +103,7 @@ NEWAVE,,,
 National Emissions Foresight System,,,
 OP-NEMS,Simulation,Office of Policy NEMS: NEMS variant for US GHG pathway analysis (OnLocation Inc. for US DOE).,https://www.energy.gov/policy/office-policy-national-energy-modeling-system-op-nems
 ORDENA,,,
-OSeMOSYS,Optimization,"OSeMOSYS is an open source modelling system for long-run integrated assessment and energy planning. It has been employed to develop energy systems models from the scale of the globe, continents, countries, regions and villages. It can focuses on detailed power representations, or multi-resource (material, financial, all energy) systems.",http://www.osemosys.org/
+OSeMOSYS,Optimization,"OSeMOSYS is an open source modelling system for long-run integrated assessment and energy planning. It has been employed to develop energy systems models from the scale of the globe, continents, countries, regions and villages. It can focus on detailed power representations, or multi-resource (material, financial, all energy) systems.",http://www.osemosys.org/
 OptGen,Optimisation - expansion planning,Generation and transmission expansion-planning model (PSR Inc.). Merges 'OPGEN' and 'PSR Optgen'.,https://www.psr-inc.com/en/software/optgen
 PANTA RHEI model,,,
 PDPAT-II,,,
