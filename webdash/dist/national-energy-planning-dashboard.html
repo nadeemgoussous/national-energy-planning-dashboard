@@ -45,6 +45,10 @@
   --s2-thin:#9f8d32;
   --mark:#012a3d;             /* Deep Space Blue: horizon marker line + label */
   --swatch-ring:rgba(1,42,61,.20);
+  /* Text set ON a Royal Gold fill: Deep Space Blue, 10.33:1. The same in both
+     themes, because the gold fill does not change -- so the dark block does not
+     override it. */
+  --on-s2:#012a3d;
   --grid:#eceff2;
   /* sequential ramp, light -> dark. q2/q4/q5/q6/q7 are the five map bins:
      the four brand blues plus Deep Space Blue as the darkest step. */
@@ -355,7 +359,10 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .tag{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10.5px;font-weight:650;
   letter-spacing:.02em;white-space:nowrap}
 .tag-ltes{background:var(--accent-soft);color:var(--s1)}
-.tag-leds{background:color-mix(in srgb,var(--s2) 15%,transparent);color:var(--s2)}
+/* Gold as the ground, Deep Space Blue on it: the brand's own use of Royal Gold.
+   It was gold TEXT on a 15% gold tint -- 1.45:1, unreadable, and against the rule
+   at the top of this file. The ring gives the fill an edge on white. */
+.tag-leds{background:var(--s2);color:var(--on-s2);box-shadow:inset 0 0 0 1px var(--swatch-ring)}
 .tag-neutral{background:var(--surface-3);color:var(--ink-2)}
 .pill{display:inline-block;padding:1.5px 6px;margin:1px 3px 1px 0;border-radius:5px;
   background:var(--surface-2);border:1px solid var(--line);font-size:10.5px;color:var(--ink-2);
