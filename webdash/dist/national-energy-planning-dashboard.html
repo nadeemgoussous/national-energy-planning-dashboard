@@ -2722,13 +2722,7 @@ function render() {
 
 function renderFootnote() {
   $("#footNote").innerHTML =
-    `<b>Catalogue version ${esc(DATA.meta.built)}</b>. ` +
-    `${fmt(DOCS.length)} documents · ${DATA.meta.countryCount} countries. ` +
-    `Regions follow IRENA's standard regional groupings. ` +
-    `Categories follow the tool register; tools with a blank category appear as <em>Uncategorised</em>. ` +
-    `Horizons are as stated in each document. ` +
-    `CSV exports carry the catalogue version and the filters that were applied, so a ` +
-    `downloaded file can always be traced back.` +
+    `<b>Catalogue version ${esc(DATA.meta.built)}</b>.` +
     dataSourceNote() + dataWarnings();
 }
 
