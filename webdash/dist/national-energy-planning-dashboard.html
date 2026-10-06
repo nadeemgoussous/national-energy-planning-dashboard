@@ -103,7 +103,6 @@ button{font:inherit;color:inherit}
 .masthead{padding:clamp(22px,3.4vw,42px) 0 0}
 .mast-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
 .masthead h1{font-size:clamp(25px,3.5vw,41px);line-height:1.08;letter-spacing:-.025em;font-weight:680;max-width:26ch}
-.mast-sub{margin-top:11px;color:var(--ink-2);font-size:14.5px}
 
 .theme-toggle{display:inline-flex;align-items:center;gap:8px;flex:none;
   background:var(--surface-1);border:1px solid var(--line);border-radius:999px;
@@ -493,7 +492,6 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
    masthead would be a second title for the same thing. */
 :root[data-embed="1"] .masthead{padding-top:16px}
 :root[data-embed="1"] .masthead h1{display:none}
-:root[data-embed="1"] .mast-sub{margin-top:0;font-size:13.5px}
 :root[data-embed="1"] .app{padding-bottom:26px}
 :root[data-embed="1"] .foot{margin-top:22px}
 
@@ -532,7 +530,6 @@ td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
     <div class="mast-row">
       <div class="mast-id">
         <h1>National Energy Transition Planning Dashboard</h1>
-        <p class="mast-sub" id="mastSub"></p>
       </div>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
         <span class="tt-icon" aria-hidden="true"></span><span class="tt-label">Theme</span>
@@ -2724,9 +2721,6 @@ function render() {
 }
 
 function renderFootnote() {
-  $("#mastSub").textContent =
-    `Long-term energy planning documents from ${DATA.meta.countryCount} countries, and the ` +
-    `modelling tools cited in them. Every chart on every tab responds to the filters below.`;
   $("#footNote").innerHTML =
     `<b>Catalogue version ${esc(DATA.meta.built)}</b>. ` +
     `${fmt(DOCS.length)} documents · ${DATA.meta.countryCount} countries. ` +
